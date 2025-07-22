@@ -1,0 +1,56 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Rental PS API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/checkout": {
+            "get": {
+                "tags": [
+                    "Checkout"
+                ],
+                "summary": "Proses checkout dan generate SnapToken Midtrans",
+                "operationId": "97fa4d9b0f2b885de8536578db8ef524",
+                "responses": {
+                    "200": {
+                        "description": "Berhasil generate SnapToken",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "snapToken": {
+                                            "type": "string",
+                                            "example": "b90cdbbb-xxxxx"
+                                        },
+                                        "order": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Keranjang kosong"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Checkout",
+            "description": "Checkout"
+        }
+    ]
+}
