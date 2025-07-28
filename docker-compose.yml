@@ -1,23 +1,23 @@
 services:
-  pemweb_uas:
+  ps:
     build: ./php
-    image: pemweb_php_uas:latest
-    container_name: pemweb_uas
-    hostname: "pemweb_uas"
+    image: ps_php:latest
+    container_name: ps
+    hostname: "ps"
     volumes:
       - ./src:/var/www/html
       - ./php/www.conf:/usr/local/etc/php-fpm.d/www.conf
     working_dir: /var/www/html
 
-  nginx_pemweb_uas:
+  nginx_ps:
     build: ./nginx
-    image: nginx_pemweb_uas:latest
-    container_name: nginx_pemweb_uas
-    hostname: "nginx_pemweb_uas"
+    image: nginx_ps:latest
+    container_name: nginx_ps
+    hostname: "nginx_ps"
     ports:
-      - "87:87"
+      - "84:84"
     volumes:
       - ./src:/var/www/html
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
-      - pemweb_uas
+      - ps
